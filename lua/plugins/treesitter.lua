@@ -1,0 +1,32 @@
+return {
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  branch = "master",
+  main = "nvim-treesitter.configs",
+  opts = {
+    ensure_installed = {
+      "bash",
+      "diff",
+      "go",
+      "gomod",
+      "gotmpl",
+      "hcl",
+      "html",
+      "json",
+      "lua",
+      "luadoc",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "query",
+      "terraform",
+      "vim",
+      "vimdoc",
+      "yaml",
+    },
+    auto_install = true,
+    highlight = { enable = true },
+    indent = { enable = true },
+  },
+}
+-- vim: ts=2 sts=2 sw=2 et
