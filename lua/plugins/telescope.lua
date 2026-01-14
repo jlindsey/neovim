@@ -4,7 +4,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
-    "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-tree/nvim-web-devicons",
     {
@@ -17,21 +16,11 @@ return {
   },
   config = function()
     local builtin = require("telescope.builtin")
-    local project_actions = require("telescope._extensions.project.actions")
 
     require("telescope").setup({
       extensions = {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown(),
-        },
-        ["project"] = {
-          base_dirs = { "~/projects", "~/.config/nvim" },
-          sync_with_nvim_tree = true,
-          theme = "dropdown",
-          on_project_selected = function(prompt_bufnr)
-            project_actions.change_working_directory(prompt_bufnr, false)
-            builtin.find_files()
-          end,
         },
       },
     })
@@ -39,7 +28,6 @@ return {
     require("telescope").load_extension("fzf")
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension("file_browser")
-    require("telescope").load_extension("project")
 
     vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
@@ -52,13 +40,6 @@ return {
     vim.keymap.set("n", "<leader>st", builtin.colorscheme, { desc = "[S]earch [T]hemes" })
     vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "[ ] Find files" })
-
-    vim.keymap.set(
-      "n",
-      "<leader>pp",
-      [[:lua require('telescope').extensions.project.project{ display_type = 'full' }<CR>]],
-      { desc = "[P]ick [P]roject", noremap = true, silent = true }
-    )
 
     vim.keymap.set("n", "<leader>/", function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.

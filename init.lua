@@ -1,5 +1,6 @@
 require("config.general")
 require("config.keys")
+require("config.filetypes")
 require("config.lazy")
 if vim.g.neovide then
   require("config.neovide")

@@ -14,7 +14,7 @@ return {
     sources = { "filesystem", "buffers", "document_symbols" },
     container = {
       width = "fit_content",
-      max_width = 30,
+      max_width = 25,
     },
     filesystem = {
       window = {

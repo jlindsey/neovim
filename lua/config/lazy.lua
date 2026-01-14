@@ -21,6 +21,12 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+local rtp_paths = {}
+local ghostty_nvim = "/Applications/Ghostty.app/Contents/Resources/nvim/site"
+if vim.fn.isdirectory(ghostty_nvim) == 1 then
+  table.insert(rtp_paths, ghostty_nvim)
+end
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
@@ -30,6 +36,10 @@ require("lazy").setup({
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
+  performance = {
+    rtp = {
+      paths = rtp_paths,
+    },
+  },
 })
