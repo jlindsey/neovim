@@ -13,9 +13,30 @@ return {
         return vim.fn.executable("make") == 1
       end,
     },
+    "FabianWirth/search.nvim",
   },
   config = function()
     local builtin = require("telescope.builtin")
+    local search = require("search")
+    search.setup({
+      append_tabs = {
+        {
+          "Symbols",
+          tele_func = builtin.lsp_document_symbols,
+        },
+        {
+          "Buffers",
+          tele_func = builtin.buffers,
+        },
+        {
+          "Commits",
+          tele_func = builtin.git_commits,
+          available = function()
+            return vim.fn.isdirectory(".git") == 1
+          end,
+        },
+      },
+    })
 
     require("telescope").setup({
       extensions = {
@@ -39,7 +60,7 @@ return {
     vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
     vim.keymap.set("n", "<leader>st", builtin.colorscheme, { desc = "[S]earch [T]hemes" })
     vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-    vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "[ ] Find files" })
+    vim.keymap.set("n", "<leader><leader>", search.open, { desc = "[ ] Find and search" })
 
     vim.keymap.set("n", "<leader>/", function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.

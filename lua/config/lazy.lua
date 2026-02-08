@@ -37,6 +37,10 @@ require("lazy").setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
   checker = { enabled = false },
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
   performance = {
     rtp = {
       paths = rtp_paths,

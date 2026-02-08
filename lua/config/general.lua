@@ -4,6 +4,8 @@ vim.g.have_nerd_font = true
 
 vim.o.termguicolors = true
 
+vim.o.title = true
+
 vim.o.number = true
 vim.o.mouse = "a"
 vim.o.showmode = false
@@ -39,6 +41,13 @@ vim.o.expandtab = true
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
+
+-- Use autocmd because ftplugins run after init and override formatoptions
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    vim.opt_local.formatoptions:append("ro")
+  end,
+})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
