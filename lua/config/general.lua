@@ -5,6 +5,7 @@ vim.g.have_nerd_font = true
 vim.o.termguicolors = true
 
 vim.o.title = true
+vim.o.laststatus = 3
 
 vim.o.number = true
 vim.o.mouse = "a"
