@@ -4,7 +4,7 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = "material",
+      theme = "tokyonight",
       disabled_filetypes = {
         statusline = {
           "neo-tree",

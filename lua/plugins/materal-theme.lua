@@ -2,6 +2,7 @@ return {
   "marko-cerovac/material.nvim",
   lazy = false,
   priority = 1000,
+  enable = false,
   config = function()
     require("material").setup({
       lualine_style = "stealth",

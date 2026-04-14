@@ -12,6 +12,7 @@ vim.o.mouse = "a"
 vim.o.showmode = false
 vim.o.breakindent = true
 vim.o.undofile = true
+vim.o.foldlevelstart = 99
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
