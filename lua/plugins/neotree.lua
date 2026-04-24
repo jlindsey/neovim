@@ -14,6 +14,7 @@ return {
   ---@module 'neo-tree'
   ---@type neotree.Config
   opts = {
+    sources = { "filesystem", "buffers", "git_status", "document_symbols" },
     close_if_last_window = true,
     enable_git_status = true,
     enable_diagnostics = true,

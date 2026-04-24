@@ -14,15 +14,26 @@ return {
       end,
     },
     "FabianWirth/search.nvim",
+    "wsdjeg/rooter.nvim",
   },
   config = function()
     local builtin = require("telescope.builtin")
     local search = require("search")
+
     search.setup({
-      append_tabs = {
+      tabs = {
+        {
+          "Files",
+          tele_func = builtin.find_files,
+        },
         {
           "Symbols",
           tele_func = builtin.lsp_document_symbols,
+          available = vim.lsp.buf.server_ready,
+        },
+        {
+          "Grep",
+          tele_func = builtin.live_grep,
         },
         {
           "Buffers",
@@ -50,6 +61,8 @@ return {
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension("file_browser")
 
+    local rooter = require("rooter")
+
     vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
     vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch existing [B]uffers" })
@@ -60,6 +73,7 @@ return {
     vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
     vim.keymap.set("n", "<leader>st", builtin.colorscheme, { desc = "[S]earch [T]hemes" })
     vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set("n", "<leader>sp", rooter.list, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set("n", "<leader><leader>", search.open, { desc = "[ ] Find and search" })
 
     vim.keymap.set("n", "<leader>/", function()
